@@ -1,6 +1,7 @@
 import aiohttp
 import asyncio
 import sys
+import platform
 from datetime import datetime, timedelta
 import json
 from abc import ABC, abstractmethod
@@ -73,5 +74,6 @@ async def main():
         print(f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    if sys.platform.startswith('win'):        
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(main())
